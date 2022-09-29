@@ -42,7 +42,7 @@ app.post("/adminadd",async(req,res)=>{
     })
 })
 
-app.get("/instdetail",async(req,res)=>{
+app.get("/adminadd",async(req,res)=>{
     iaddModel.find((error,data)=>{
         if(error)
         {
