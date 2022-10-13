@@ -29,8 +29,8 @@ app.post("/signup",async(req,res)=>{
 const{iaddModel}=require("./iaddModel")
 
 app.post("/adminadd",async(req,res)=>{
-    const idata=req.body
-    const ob=new iaddModel(idata)
+    const dataa=req.body
+    const ob=new iaddModel(dataa)
     ob.save((error,idata)=>{
         if(error)
         {
@@ -42,15 +42,16 @@ app.post("/adminadd",async(req,res)=>{
     })
 })
 
-app.get("/adminadd",async(req,res)=>{
-    iaddModel.find((error,data)=>{
+app.get("/instdetail",async(req,res)=>{
+    iaddModel.find((error,data2)=>{
         if(error)
         {
             res.send("error occured")
         }
         else
         {
-            res.send(data)
+
+            res.send(data2)
         }
     })
 })

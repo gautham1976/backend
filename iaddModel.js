@@ -1,7 +1,7 @@
 const Mongoose=require("mongoose")
 const iaddModel=Mongoose.model("iadds",Mongoose.Schema({
     iaddname:String,
-    iadddetail:String,
+    iadddetails:String,
     iaddref:String
 }))
 
