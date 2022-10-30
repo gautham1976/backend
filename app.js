@@ -26,6 +26,21 @@ app.post("/signup",async(req,res)=>{
     })
 })
 
+app.post("/dlogin", async(req, res) => {
+    const request = req.body
+    signupModel.findOne({ signusername: request.signusername }, (err, data) => {
+        if (data) {
+            if (data.signpassword == request.signpassword) {
+                res.send({ "success": true, signdata: data });
+
+            } else {
+                res.send({ "success": "Invalid password!" });
+            }
+        } else {
+            res.send({ "success": "No User Found!" });
+        }
+    })
+})
 const{iaddModel}=require("./iaddModel")
 
 app.post("/adminadd",async(req,res)=>{
