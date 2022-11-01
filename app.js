@@ -26,15 +26,16 @@ app.post("/signup",async(req,res)=>{
     })
 })
 
-app.post("/dlogin", async(req, res) => {
+app.post("/login", async(req, res) => {
     const request = req.body
-    signupModel.findOne({ signusername: request.signusername }, (err, data) => {
-        if (data) {
-            if (data.signpassword == request.signpassword) {
-                res.send({ "success": true, signdata: data });
+    console.log(req.body)
+    signupModel.findOne({ signusername: request. signusername }, (err, signdata) => {
+        if (signdata) {
+            if (signdata.signpassword == request.signpassword) {
+                res.send({ "success": true, signdata: signdata });
 
             } else {
-                res.send({ "success": "Invalid password!" });
+                res.send({ "success": "Invalid username or password!" });
             }
         } else {
             res.send({ "success": "No User Found!" });
@@ -69,6 +70,23 @@ app.get("/instdetail",async(req,res)=>{
             res.send(data2)
         }
     })
+})
+
+app.get("/adminuserlist",async(req,res)=>{
+    signupModel.find(
+        (error,data)=>
+    {
+        if(error)
+        {
+            res.send(error)
+        
+        }
+        else{
+            res.send(data)
+        }
+
+    })
+
 })
 app.listen(3000,()=>{console.log("Server running at http://localhost:3000")
 
