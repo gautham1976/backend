@@ -26,6 +26,8 @@ app.post("/signup",async(req,res)=>{
     })
 })
 
+
+
 app.post("/login", async(req, res) => {
     const request = req.body
     console.log(req.body)
@@ -43,6 +45,7 @@ app.post("/login", async(req, res) => {
     })
 })
 const{iaddModel}=require("./iaddModel")
+
 
 app.post("/adminadd",async(req,res)=>{
     const dataa=req.body
@@ -88,6 +91,37 @@ app.get("/adminuserlist",async(req,res)=>{
     })
 
 })
+const { feedbckModel } = require("./feedbckModel")
+app.post("/contact",async(req,res)=>{
+    const feedbackdata=req.body
+    console.log(req.body)
+    const ob=new feedbckModel(feedbackdata)
+    ob.save((error,fdata)=>{
+        if(error)
+        {
+            res.send("error occured")
+        }
+        else{
+            res.send(fdata)
+        }
+    })
+})
+
+app.get("/forgotpass",async(req,res)=>{
+    feedbckModel.find(
+        (error,data4)=>
+        {
+            if(error)
+            {
+                res.send(error)
+            }
+            else{
+                res.send(data4)
+            }
+        }
+    )
+})
+
 app.listen(3000,()=>{console.log("Server running at http://localhost:3000")
 
 })
